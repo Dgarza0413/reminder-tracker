@@ -1,0 +1,60 @@
+{{!-- our app will be placed here --}}
+<h2>unfinished tasks</h2>
+<ul>
+    {{#each tasks}}
+    <li>
+        <p>Task Id{{this.id}}</p>
+        {{#unless completed}}
+        <p>Task {{> tasks/task-block complete=true}}</p>
+        {{/unless}}
+    </li>
+    {{/each}}
+</ul>
+
+<h2>finished tasks</h2>
+<ul>
+    {{#each tasks}}
+    <li>
+        <p>Task Id{{this.id}}</p>
+        {{#unless completed}}
+        <p>Task {{> tasks/task-block complete=false}}</p>
+        {{/unless}}
+    </li>
+    {{/each}}
+</ul>
+
+
+{{!-- add task --}}
+<h2>Add a task</h2>
+<form id="submitTask" method="POST">
+    <label for="ta">task</label>
+    <input type="text" id="ta" name="task">
+    <button type="submit">Submit task</button>
+</form>
+
+{{!-- <form id="finishTask" method="POST">
+    <label for="task">task</label>
+    <input type="text" name="task">
+    <button type="submit">Finish task</button>
+</form> --}}
+
+
+{{!-- <script type="text/javascript">
+    $("#submitTask").on("submit", function (event) {
+        event.preventDefault();
+        console.log("the submit task button was clicked")
+        var newTask = {
+            task: $("#submitTask [name=task]").val().trim()
+        };
+        console.log(newTask)
+
+
+        $.ajax("/api/tasks", {
+            type: "POST",
+            data: newTask
+        }).then(function () {
+            console.log("added new movie");
+            location.reload();
+        })
+    })
+</script> --}}
