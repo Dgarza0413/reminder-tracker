@@ -1,60 +1,41 @@
 {{!-- our app will be placed here --}}
 <h2>unfinished tasks</h2>
 <ul>
-    {{#each tasks}}
     <li>
+        {{#each tasks}}
         <p>Task Id{{this.id}}</p>
         {{#unless completed}}
         <p>Task {{> tasks/task-block complete=true}}</p>
         {{/unless}}
+        {{/each}}
     </li>
-    {{/each}}
 </ul>
 
 <h2>finished tasks</h2>
 <ul>
-    {{#each tasks}}
     <li>
+        {{#each tasks}}
         <p>Task Id{{this.id}}</p>
-        {{#unless completed}}
+        {{#if completed}}
         <p>Task {{> tasks/task-block complete=false}}</p>
-        {{/unless}}
+        {{/if}}
+        {{/each}}
     </li>
-    {{/each}}
 </ul>
 
 
 {{!-- add task --}}
 <h2>Add a task</h2>
-<form id="submitTask" method="POST">
-    <label for="ta">task</label>
-    <input type="text" id="ta" name="task">
-    <button type="submit">Submit task</button>
+<form class="create-form">
+    <div class="form-group">
+        <label for="ta">Task</label>
+        <input type="text" id="ta" name="name">
+    </div>
+
+    <div class="form-group">
+        <label for="comp">completed?</label><br>
+        <input type="radio" name="completed" value="1" checked> completed<br>
+        <input type="radio" name="completed" value="0"> not completed
+    </div>
+    <button type="submit">Add task</button>
 </form>
-
-{{!-- <form id="finishTask" method="POST">
-    <label for="task">task</label>
-    <input type="text" name="task">
-    <button type="submit">Finish task</button>
-</form> --}}
-
-
-{{!-- <script type="text/javascript">
-    $("#submitTask").on("submit", function (event) {
-        event.preventDefault();
-        console.log("the submit task button was clicked")
-        var newTask = {
-            task: $("#submitTask [name=task]").val().trim()
-        };
-        console.log(newTask)
-
-
-        $.ajax("/api/tasks", {
-            type: "POST",
-            data: newTask
-        }).then(function () {
-            console.log("added new movie");
-            location.reload();
-        })
-    })
-</script> --}}
