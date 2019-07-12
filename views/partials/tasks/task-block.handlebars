@@ -1,0 +1,7 @@
+<li>
+    <button class="change-status" data-id="{{id}}" data-newcomp="{{completed}}">
+        {{#if completed}}<i class="fas fa-check-square"></i>{{else}}<i class="fas fa-arrow-left"></i>{{/if}}
+    </button>
+    <button class="delete-task" data-id="{{this.id}}"><i class="fas fa-trash"></i></button>
+    {{task}}
+</li>

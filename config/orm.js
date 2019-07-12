@@ -1,4 +1,4 @@
-var connection = require("../config/connection.js");
+var connection = require("../config/connection");
 
 // This helper function creates questionsmarks that pass the amount of values required into the mysql MediaQueryList.
 function printQuestionMarks(num) {
@@ -70,10 +70,21 @@ var orm = {
             if (err) {
                 throw err;
             }
+            cb(result);
+        });
+    },
+    delete: function (table, condition, cb) {
+        var queryString = "DELETE FROM " + table;
+        queryString += " WHERE ";
+        queryString += condition;
+
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
 
             cb(result);
         });
-
     }
 };
 

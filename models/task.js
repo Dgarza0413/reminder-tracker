@@ -1,4 +1,5 @@
-var orm = require("../config/orm.js");
+// var orm = require("../config/orm.js");
+var orm = require("../config/orm")
 
 var task = {
     all: function (cb) {
@@ -13,6 +14,11 @@ var task = {
     },
     update: function (objColVals, condition, cb) {
         orm.update("tasks", objColVals, condition, function (res) {
+            cb(res);
+        });
+    },
+    delete: function (condition, cb) {
+        orm.delete("tasks", condition, function (res) {
             cb(res);
         });
     }

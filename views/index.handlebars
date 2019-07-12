@@ -1,41 +1,111 @@
 {{!-- our app will be placed here --}}
-<h2>unfinished tasks</h2>
-<ul>
-    <li>
-        {{#each tasks}}
-        <p>Task Id{{this.id}}</p>
-        {{#unless completed}}
-        <p>Task {{> tasks/task-block complete=true}}</p>
-        {{/unless}}
-        {{/each}}
-    </li>
-</ul>
+<style>
+    body {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,2989d8+20,2989d8+20,e5e5e5+100 */
+        background: #1e5799;
+        /* Old browsers */
+        background: -moz-linear-gradient(left, #1e5799 0%, #2989d8 20%, #2989d8 20%, #e5e5e5 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #1e5799 0%, #2989d8 20%, #2989d8 20%, #e5e5e5 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #1e5799 0%, #2989d8 20%, #2989d8 20%, #e5e5e5 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#e5e5e5', GradientType=1);
+        /* IE6-9 */
+    }
 
-<h2>finished tasks</h2>
-<ul>
-    <li>
-        {{#each tasks}}
-        <p>Task Id{{this.id}}</p>
-        {{#if completed}}
-        <p>Task {{> tasks/task-block complete=false}}</p>
-        {{/if}}
-        {{/each}}
-    </li>
-</ul>
+    li {
+        list-style-type: none;
+        background-color: azure;
+        border-radius: 25px;
+        padding: 10px 10px;
+        margin: 5% 0%;
+        font-size: 20px;
+        font-family: 'Lato', sans-serif;
+    }
 
+    i {}
+
+    i:hover {
+        background-color: red;
+    }
+
+    h1 {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        font-size: 38px;
+        text-align: center;
+    }
+
+    h2 {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        font-size: 28px;
+        text-align: center;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    .flex-box {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        display: flex;
+    }
+
+    #add-task {
+        width: 100%;
+    }
+</style>
+<h1>Task Manager</h1>
+
+<div class="flex-box">
+    <div class="flex-column">
+        <h2>Unfinished tasks</h2>
+        <ul>
+            {{#each tasks}}
+            {{#unless completed}}
+            {{> tasks/task-block completed=true}}
+            {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
+    <div class="flex-column">
+        <h2>Finished tasks</h2>
+        <ul>
+            {{#each tasks}}
+            {{#if completed}}
+            {{> tasks/task-block completed=false}}
+            {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+
+</div>
 
 {{!-- add task --}}
-<h2>Add a task</h2>
-<form class="create-form">
-    <div class="form-group">
-        <label for="ta">Task</label>
-        <input type="text" id="ta" name="name">
+<div class="flex-box">
+    <div class="flex-column">
+        <h2>Add a task</h2>
+        <form class="create-form">
+            <div class="form-group">
+                <label for="ta"></label>
+                <input type="text" id="ta" name="name" placeholder="enter task...">
+            </div>
+            <button id="add-task" type="submit">Add task</button>
+        </form>
     </div>
-
-    <div class="form-group">
-        <label for="comp">completed?</label><br>
-        <input type="radio" name="completed" value="1" checked> completed<br>
-        <input type="radio" name="completed" value="0"> not completed
-    </div>
-    <button type="submit">Add task</button>
-</form>
+</div>
